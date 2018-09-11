@@ -21,6 +21,16 @@ service avreg stop
 service apache2 stop
 service mysql stop
 
+# create MEDIADIR and mapping
+MEDIADIR=/avreg_media
+if [ ! -f $MEDIADIR/initialized ]; then
+	mv /var/spool/avreg* $MEDIADIR
+	touch $MEDIADIR/initialized	
+fi
+rm -rf /var/spool/avreg
+ln -s $MEDIADIR /var/spool/avreg
+
+# create  and mapping
 DBDIR=/avreg_db
 if [ ! -f $DBDIR/initialized ]; then
 	mv /var/lib/mysql/avreg6_db/* $DBDIR
@@ -29,6 +39,8 @@ fi
 rm -rf /var/lib/mysql/avreg6_db
 ln -s $DBDIR /var/lib/mysql/avreg6_db
 chown mysql:mysql /var/lib/mysql/avreg6_db
+
+
 
 service mysql start
 service apache2 start
