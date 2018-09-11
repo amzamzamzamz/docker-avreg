@@ -1,5 +1,12 @@
 FROM debian:jessie
 
+ENV MEDIADIR=/avreg_media
+ENV DBDIR=/avreg_db
+
+RUN mkdir $MEDIADIR && ln -s $MEDIADIR /var/spool/avreg
+
+VOLUME /avreg_db /avreg_media
+
 # add avreg repository to application sources
 RUN echo "deb http://avreg.net/repos/6.1/debian/ jessie main contrib non-free" >> /etc/apt/sources.list
 
