@@ -29,6 +29,7 @@ if [ ! -f $MEDIADIR/initialized ]; then
 fi
 rm -rf /var/spool/avreg
 ln -s $MEDIADIR /var/spool/avreg
+chown root:avreg /var/spool/avreg
 
 # create  and mapping
 DBDIR=/avreg_db
