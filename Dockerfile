@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 ENV MEDIADIR=/avreg_media
-    DBDIR=/avreg_db
+ENV DBDIR=/avreg_db
 
 RUN mkdir $MEDIADIR && ln -s $MEDIADIR /var/spool/avreg
 
